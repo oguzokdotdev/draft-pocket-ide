@@ -1,6 +1,6 @@
 # 📱 Draft: Pocket IDE
 
-*The native, powerful and fully free IDE for iOS*
+**The native, powerful and fully free IDE for iOS**
 
 ---
 
@@ -14,6 +14,6 @@ A fresh perspective and new possibilities in mobile development.
 
 ## ⚖️ License 
 
-*GNU General Public License v3.0*
+**GNU General Public License v3.0**
 
 See `LICENSE` for more information.
