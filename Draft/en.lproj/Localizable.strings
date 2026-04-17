@@ -1,4 +1,4 @@
-"home" = "Home":
+"home" = "Home";
 "home.actions" = "Quick actions";
 "home.actions.newFile" = "New file";
 "home.actions.openFolder" = "Open folder";
