@@ -35,19 +35,28 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("settings.section.general") {
+                Section {
                     Picker("settings.language", selection: $selectedLanguage) {
                         Text("settings.language.system").tag(String?.none)
+                    }
+                }
+                Section {
+                    Picker("settings.language", selection: $selectedLanguage) {
                         Text("settings.language.en").tag(String?("en"))
                         Text("settings.language.ru").tag(String?("ru"))
                     }
-                    .pickerStyle(.navigationLink)
+                }
+                
+                Section {
                     Picker("settings.appearance", selection: $selectedAppearance) {
                         Text("settings.appearance.system").tag(String?.none)
+                    }
+                }
+                Section {
+                    Picker("settings.appearance", selection: $selectedAppearance) {
                         Text("settings.appearance.dark").tag(String?("dark"))
                         Text("settings.appearance.light").tag(String?("light"))
                     }
-                    .pickerStyle(.navigationLink)
                 }
             }
             .navigationTitle("settings.title")
