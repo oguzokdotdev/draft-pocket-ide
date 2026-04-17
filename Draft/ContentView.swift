@@ -90,7 +90,7 @@ struct AboutView: View {
             
             Text("v0.0.1")
                 .font(.caption)
-                .foregroundColor(.tertiaryLabel)
+                .foregroundColor(.tertiary)
                 .padding(.bottom, 20)
         }
         .navigationTitle("settings.about")
