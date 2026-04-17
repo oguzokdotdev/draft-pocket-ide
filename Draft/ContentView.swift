@@ -2,24 +2,35 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                Image(systemName: "terminal.fill")
-                    .font(.system(size: 80))
-                    .foregroundStyle(.tint)
+        NavigationSplitView {
+            List {
+                Section("Quick actions") {
+                    Button(action: { /* Logic */ }) {
+                        Label("New file", systemImage: "plus.circle")
+                    }
+                    Button(action: { /* Logic */ }) {
+                        Label("Open file", systemImage: "folder")
+                    }
+                }
                 
-                Text("Draft IDE")
-                    .font(.largeTitle.bold())
-                
-                Text("Ready to build the future.")
-                    .foregroundStyle(.secondary)
+                Section("Recent files") {
+                    NavigationLink(value: "test.py") {
+                        Label("test.py", systemImage: "doc.text")
+                    }
+                }
             }
-            .padding()
             .navigationTitle("Draft")
+            
+            .safeAreaInset(edge: .bottom) {
+                Button(action: { /* Homepage logic */ }) {
+                    Label("Home", systemImage: "house")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(.ultraThinMaterial)
+                }
+            }
+        } detail: {
+            ContentUnavailableView("No File Selected", systemImage: "doc.badge.plus")
         }
     }
-}
-
-#Preview {
-    ContentView()
 }
