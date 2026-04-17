@@ -7,16 +7,16 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             NavigationSplitView {
                 List {
-                    Section("Quick actions") {
+                    Section("home.actions") {
                         Button(action: { /* Logic */ }) {
-                            Label("New file", systemImage: "plus.circle")
+                            Label("home.actions.newFile", systemImage: "plus.circle")
                         }
                         Button(action: { /* Logic */ }) {
-                            Label("Open file", systemImage: "folder")
+                            Label("home.actions.openFolder", systemImage: "folder")
                         }
                     }
                     
-                    Section("Recent files") {
+                    Section("home.recent") {
                         NavigationLink(value: "test.py") {
                             Label("test.py", systemImage: "doc.text")
                         }
@@ -27,7 +27,7 @@ struct ContentView: View {
                 ContentUnavailableView("No File Selected", systemImage: "doc.badge.plus")
             }
             .tabItem {
-                Label("Home", systemImage: "house.fill")
+                Label("home", systemImage: "house.fill")
             }
             .tag(0)
             

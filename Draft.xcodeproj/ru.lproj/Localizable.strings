@@ -1,0 +1,5 @@
+"home" = "Главная";
+"home.actions" = "Быстрые действия";
+"home.actions.newFile" = "Новый файл";
+"home.actions.openFolder" = "Открыть папку";
+"home.recent" = "Недавние файлы";
