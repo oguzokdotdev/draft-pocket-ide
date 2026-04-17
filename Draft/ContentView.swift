@@ -35,35 +35,33 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
+                Section("settings.section.general") {
                     Picker("settings.language", selection: $selectedLanguage) {
-                        Text("settings.language.system").tag(String?.none)
+                        Section {
+                            Text("settings.language.system").tag(String?.none)
+                        }
+                        Section {
+                            Text("settings.language.en").tag(String?("en"))
+                            Text("settings.language.ru").tag(String?("ru"))
+                        }
                     }
-                }
-                Section {
-                    Picker("settings.language", selection: $selectedLanguage) {
-                        Text("settings.language.en").tag(String?("en"))
-                        Text("settings.language.ru").tag(String?("ru"))
-                    }
-                }
-                
-                Section {
+                    .pickerStyle(.navigationLink)
                     Picker("settings.appearance", selection: $selectedAppearance) {
-                        Text("settings.appearance.system").tag(String?.none)
+                        Section {
+                            Text("settings.appearance.system").tag(String?.none)
+                        }
+                        Section {
+                            Text("settings.appearance.dark").tag(String?("dark"))
+                            Text("settings.appearance.light").tag(String?("light"))
+                        }
                     }
-                }
-                Section {
-                    Picker("settings.appearance", selection: $selectedAppearance) {
-                        Text("settings.appearance.dark").tag(String?("dark"))
-                        Text("settings.appearance.light").tag(String?("light"))
-                    }
+                    .pickerStyle(.navigationLink)
                 }
             }
             .navigationTitle("settings.title")
         }
     }
 }
-
 // MARK: - Main Content View
 struct ContentView: View {
     @State private var selectedTab = 0
