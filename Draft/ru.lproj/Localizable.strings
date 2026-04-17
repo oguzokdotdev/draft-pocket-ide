@@ -3,3 +3,11 @@
 "home.actions.newFile" = "Новый файл";
 "home.actions.openFolder" = "Открыть папку";
 "home.recent" = "Недавние файлы";
+
+"settings" = "Настройки";
+"settings.title" = "Настройки";
+"settings.section.general" = "Основные";
+"settings.language" = "Язык";
+"settings.language.system" = "Системный";
+"settings.language.en" = "English";
+"settings.language.ru" = "Русский";

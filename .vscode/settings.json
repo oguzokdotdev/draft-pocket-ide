@@ -1,3 +1,6 @@
 {
-    "swift.path": "/home/oguzokoffc/.local/share/swiftly/bin/"
+    "swift.path": "/home/oguzokoffc/.local/share/swiftly/bin/",
+    "swift.sourcekit-lsp.serverArguments": [
+        "-Xswiftc", "-D", "-Xswiftc", "LINUX"
+    ]
 }
