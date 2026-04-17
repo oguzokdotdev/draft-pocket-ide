@@ -49,9 +49,52 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.navigationLink)
                 }
+                Section {
+                    NavigationLink(destination: AboutView()) {
+                        HStack {
+                            Text("settings.about")
+                            Spacer()
+                            Text("v0.1.0")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
             }
             .navigationTitle("settings.title")
         }
+    }
+}
+
+// MARK: - About View
+struct AboutView: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "terminal.fill") 
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
+                .foregroundColor(.blue)
+                .padding(.top, 40)
+            
+            VStack(spacing: 4) {
+                Text("Draft")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                
+                Text("Pocket IDE")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
+            Text("v0.0.1")
+                .font(.caption)
+                .foregroundColor(.tertiaryLabel)
+                .padding(.bottom, 20)
+        }
+        .navigationTitle("settings.about")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

@@ -15,3 +15,4 @@
 "settings.appearance.system" = "Системная";
 "settings.appearance.dark" = "Тёмная";
 "settings.appearance.light" = "Светлая";
+"settings.about" = "О Draft IDE";
