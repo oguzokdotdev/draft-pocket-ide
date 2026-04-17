@@ -11,3 +11,7 @@
 "settings.language.system" = "System";
 "settings.language.en" = "English";
 "settings.language.ru" = "Russian";
+"settings.appearance" = "Appearance";
+"settings.appearance.system" = "System";
+"settings.appearance.dark" = "Dark";
+"settings.appearance.light" = "Light";

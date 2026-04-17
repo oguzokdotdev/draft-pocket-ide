@@ -30,6 +30,7 @@ struct HomeView: View {
 // MARK: - Settings View
 struct SettingsView: View {
     @AppStorage("selectedLanguage") private var selectedLanguage: String?
+    @AppStorage("selectedAppearance") private var selectedAppearance: String?
 
     var body: some View {
         NavigationStack {
@@ -39,6 +40,12 @@ struct SettingsView: View {
                         Text("settings.language.system").tag(String?.none)
                         Text("settings.language.en").tag(String?("en"))
                         Text("settings.language.ru").tag(String?("ru"))
+                    }
+                    .pickerStyle(.navigationLink)
+                    Picker("settings.appearance", selection: $selectedAppearance) {
+                        Text("settings.appearance.system").tag(String?.none)
+                        Text("settings.appearance.dark").tag(String?("dark"))
+                        Text("settings.appearance.light").tag(String?("light"))
                     }
                     .pickerStyle(.navigationLink)
                 }
@@ -52,6 +59,7 @@ struct SettingsView: View {
 struct ContentView: View {
     @State private var selectedTab = 0
     @AppStorage("selectedLanguage") private var selectedLanguage: String?
+    @AppStorage("selectedAppearance") private var selectedAppearance: String?
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -68,5 +76,14 @@ struct ContentView: View {
                 .tag(1)
         }
         .environment(\.locale, selectedLanguage != nil ? .init(identifier: selectedLanguage!) : .current)
+        .preferredColorScheme(getAppearance())
+    }
+
+    private func getAppearance() -> ColorScheme? {
+        switch selectedAppearance {
+        case "dark": return .dark
+        case "light": return .light
+        default: return nil
+        }
     }
 }
