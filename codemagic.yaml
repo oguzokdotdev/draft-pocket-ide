@@ -1,0 +1,61 @@
+workflows:
+  ios-build:
+    name: iOS Build
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      groups:
+        - main
+      vars:
+        XCODE_PROJECT: "Draft.xcodeproj"
+        XCODE_SCHEME: "Draft"
+        IPA_NAME: "draft_pocket_ide.ipa"
+      xcode: latest
+    scripts:
+      - name: Initialize keychain
+        script: keychain initialize
+      - name: Build Xcode Project
+        script: |
+          xcodebuild build \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            OBJROOT=$FCI_BUILD_DIR/build \
+            SYMROOT=$FCI_BUILD_DIR/build
+      - name: Package IPA
+        script: |
+          APP_PATH=$(find $FCI_BUILD_DIR/build/Release-iphoneos -name "*.app" -type d | head -n 1)
+          if [ -z "$APP_PATH" ]; then
+              echo "ERR: .app file not found"
+              exit 1
+          fi
+          
+          echo "Found bundle: $APP_PATH"
+          PAYLOAD_DIR="Payload"
+          
+          rm -rf "$PAYLOAD_DIR" "$IPA_NAME"
+          mkdir -p "$PAYLOAD_DIR"
+          
+          echo "Pack into $IPA_NAME..."
+          cp -RL "$APP_PATH" "$PAYLOAD_DIR/"
+          zip -qr -y "$IPA_NAME" "$PAYLOAD_DIR"
+          
+          rm -rf "$PAYLOAD_DIR"
+          echo "All set! IPA maked: $IPA_NAME"
+      - name: Send IPA to Telegram
+        script: |
+          if [ -f "$IPA_NAME" ]; then
+            curl -v -F chat_id="$TELEGRAM_CHAT_ID" \
+                 -F document=@"$IPA_NAME" \
+                 -F caption="✅ Build Ready!" \
+                 https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendDocument
+          else
+            echo "ERR: File $IPA_NAME not was created!"
+            exit 1
+          fi
+    artifacts:
+      - "*.ipa"
