@@ -37,23 +37,15 @@ struct SettingsView: View {
             Form {
                 Section("settings.section.general") {
                     Picker("settings.language", selection: $selectedLanguage) {
-                        Section {
-                            Text("settings.language.system").tag(String?.none)
-                        }
-                        Section {
-                            Text("settings.language.en").tag(String?("en"))
-                            Text("settings.language.ru").tag(String?("ru"))
-                        }
+                        Text("settings.language.system").tag(String?.none)
+                        Text("settings.language.en").tag(String?("en"))
+                        Text("settings.language.ru").tag(String?("ru"))
                     }
                     .pickerStyle(.navigationLink)
                     Picker("settings.appearance", selection: $selectedAppearance) {
-                        Section {
-                            Text("settings.appearance.system").tag(String?.none)
-                        }
-                        Section {
-                            Text("settings.appearance.dark").tag(String?("dark"))
-                            Text("settings.appearance.light").tag(String?("light"))
-                        }
+                        Text("settings.appearance.system").tag(String?.none)
+                        Text("settings.appearance.dark").tag(String?("dark"))
+                        Text("settings.appearance.light").tag(String?("light"))
                     }
                     .pickerStyle(.navigationLink)
                 }
@@ -62,6 +54,7 @@ struct SettingsView: View {
         }
     }
 }
+
 // MARK: - Main Content View
 struct ContentView: View {
     @State private var selectedTab = 0
