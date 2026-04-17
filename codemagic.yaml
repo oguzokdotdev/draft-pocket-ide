@@ -1,6 +1,12 @@
 workflows:
   ios-build:
     name: iOS Build
+    triggering:
+      events:
+        - push
+      branch:
+        include:
+          - main
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
@@ -46,16 +52,5 @@ workflows:
           
           rm -rf "$PAYLOAD_DIR"
           echo "All set! IPA maked: $IPA_NAME"
-      - name: Send IPA to Telegram
-        script: |
-          if [ -f "$IPA_NAME" ]; then
-            curl -v -F chat_id="$TELEGRAM_CHAT_ID" \
-                 -F document=@"$IPA_NAME" \
-                 -F caption="✅ Build Ready!" \
-                 https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendDocument
-          else
-            echo "ERR: File $IPA_NAME not was created!"
-            exit 1
-          fi
     artifacts:
       - "*.ipa"
